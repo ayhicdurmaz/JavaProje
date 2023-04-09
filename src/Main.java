@@ -251,8 +251,8 @@ class DosyaIslemleri {
 // Bu class ile Mail ayarlamaları yapılır.
 class Mail{
 
-    String username = "ayhicdurmaz@gmail.com"; //Kullanıcının kendi mailini gireceiği yer.
-    String password = "dbtinmbytsbljjmw"; //Kullanıcının mail şifresini gireceği yer.
+    String username = "<Emailinizi Buraya Yazın>"; //Kullanıcının kendi mailini gireceiği yer.
+    String password = "<Şifrenizi Buraya Yazın>"; //Kullanıcının mail şifresini gireceği yer.
     Properties props;
 
     public Mail(){
