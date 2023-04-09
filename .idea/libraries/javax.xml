@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="file://$USER_HOME$/Downloads/javax.mail" />
       <root url="jar://$USER_HOME$/Downloads/activation.jar/activation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JarDosyaları/activation.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

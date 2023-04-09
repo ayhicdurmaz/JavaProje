@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Properties;
 import javax.mail.internet.*;
+import javax.activation.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -70,9 +71,9 @@ public class Main {
 
 // Bu class uye bilgilerini tutan classtır.
 class Uye {
-    String ad;
-    String soyad;
-    String eposta;
+    private String ad;
+    private String soyad;
+    private String eposta;
 
     public void setAd(String ad) { this.ad = ad; }
     public void setSoyad(String soyad) { this.soyad = soyad; }
@@ -86,7 +87,7 @@ class Uye {
 // Bu class ile uye girişi, kayiti, ve eklenmesi işlemleri yapılır.
 class UyeIslemleri{
 
-    DosyaIslemleri dosyaIslemleri = new DosyaIslemleri();
+    private DosyaIslemleri dosyaIslemleri = new DosyaIslemleri();
 
     // Bu fonksiyon kullanıcıdan üye bilgilerini alarak onları oluşturulan uye classıyla düzenler ve kaydedileceği fonksiyona uye olarak verir.
     public void uyeGiris(String tip){
@@ -251,9 +252,9 @@ class DosyaIslemleri {
 // Bu class ile Mail ayarlamaları yapılır.
 class Mail{
 
-    String username = "<Emailinizi Buraya Yazın>"; //Kullanıcının kendi mailini gireceiği yer.
-    String password = "<Şifrenizi Buraya Yazın>"; //Kullanıcının mail şifresini gireceği yer.
-    Properties props;
+    private String kullaniciAdi = "<EMAİLİ BURAYA YAZIN>"; //Kullanıcının kendi mailini gireceiği yer.
+    private String sifre = "<SİFREYİ BURAYA YAZIN>"; //Kullanıcının mail şifresini gireceği yer.
+    private Properties props;
 
     public Mail(){
         props = new Properties();
@@ -269,13 +270,13 @@ class Mail{
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
+                        return new PasswordAuthentication(kullaniciAdi, sifre);
                     }
                 });
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username));
+            message.setFrom(new InternetAddress(kullaniciAdi));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(aliciMail));
             message.setSubject(konu);
@@ -293,11 +294,11 @@ class Mail{
 // Mail konusu, gövdesi, ve hangi kullanıcılara gönderileceği işlemleri bu classta yapılır.
 class MailIslemleri extends Mail {
 
-    DosyaIslemleri dosyaIslemleri = new DosyaIslemleri();
-    Scanner scanner = new Scanner(System.in);
+    private DosyaIslemleri dosyaIslemleri = new DosyaIslemleri();
+    private Scanner scanner = new Scanner(System.in);
 
-    String konu;
-    String mesaj;
+    private String konu;
+    private String mesaj;
 
     public void mailOlustur() {
         System.out.println("Konu giriniz : ");
@@ -327,7 +328,7 @@ class MailIslemleri extends Mail {
     public void tumUyelereMailGonder() {
         elitUyelereMailGonder();
         genelUyelereMailGonder();
-        System.out.println("Tüm uyelere nail gonderildi");
+        System.out.println("Tüm uyelere mail gonderildi");
     }
 
 }
